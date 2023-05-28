@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import Modal from "./component/Modal/Modal";
+import Board from "./Containers/Board";
+import Start from "./Containers/Start";
+import "./index.css";
+import { gamecontext } from "./store/store";
 
 function App() {
+  const { isGameActive, Modals } = useContext(gamecontext);
+  console.log(Modal);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        {!isGameActive && <Start />}
+        {isGameActive && <Board />}
+      </div>
+      {Modals && <Modal />}
     </div>
   );
 }
